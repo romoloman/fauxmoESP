@@ -96,7 +96,9 @@ class fauxmoESP {
         int getDeviceId(const char * device_name);
         void setDeviceUniqueId(unsigned char id, const char *uniqueid);
         void onSetState(TSetStateCallback fn) { _setCallback = fn; }
+        bool setState(unsigned char id, bool state);
         bool setState(unsigned char id, bool state, unsigned char value);
+        bool setState(const char * device_name, bool state);
         bool setState(const char * device_name, bool state, unsigned char value);
         bool process(AsyncClient *client, bool isGet, String url, String body);
         void enable(bool enable);
