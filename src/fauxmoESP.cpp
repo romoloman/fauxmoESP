@@ -513,6 +513,14 @@ char * fauxmoESP::getDeviceName(unsigned char id, char * device_name, size_t len
     return device_name;
 }
 
+bool fauxmoESP::setState(unsigned char id, bool state) {
+    if (id < _devices.size()) {
+		_devices[id].state = state;
+		return true;
+	}
+	return false;
+}
+
 bool fauxmoESP::setState(unsigned char id, bool state, unsigned char value) {
     if (id < _devices.size()) {
 		_devices[id].state = state;
@@ -520,6 +528,13 @@ bool fauxmoESP::setState(unsigned char id, bool state, unsigned char value) {
 		return true;
 	}
 	return false;
+}
+
+bool fauxmoESP::setState(const char * device_name, bool state) {
+	int id = getDeviceId(device_name);
+	if (id < 0) return false;
+	_devices[id].state = state;
+	return true;
 }
 
 bool fauxmoESP::setState(const char * device_name, bool state, unsigned char value) {
